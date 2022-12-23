@@ -6,8 +6,7 @@ public class Health3 : Consumable
 
     public void Awake()
     {
-        Texture2D texure2D = Resources.Load<Texture2D>("Unrest/Assets/Resources/UI/Sprites/Items/Consumables/Fanta.png");
-        Debug.Log(texure2D);
+        Texture2D texure2D = Resources.Load<Texture2D>("UI/Sprites/Items/Consumables/Fanta");
         spriteToReturn = Sprite.Create(
             texure2D,
             new Rect(0, 0, texure2D.width, texure2D.height),

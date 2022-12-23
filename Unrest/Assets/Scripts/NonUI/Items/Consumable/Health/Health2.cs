@@ -5,8 +5,8 @@ public class Health2 : Consumable
     Sprite spriteToReturn;
 
     public void Awake()
-    {
-        Texture2D texure2D = Resources.Load<Texture2D>("Unrest/Assets/Resources/UI/Sprites/Items/Consumables/Coke.png");
+    {                                                 //this path starts from Resources. Unity automatically starts the path assuming Resources exists
+        Texture2D texure2D = Resources.Load<Texture2D>("UI/Sprites/Items/Consumables/Sprite");
         spriteToReturn = Sprite.Create(
             texure2D,
             new Rect(0, 0, texure2D.width, texure2D.height),
