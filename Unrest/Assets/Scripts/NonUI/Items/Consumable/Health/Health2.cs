@@ -6,7 +6,7 @@ public class Health2 : Consumable
 
     public void Awake()
     {
-        Texture2D texure2D = Resources.Load<Texture2D>("NonUI/Sprites/Items/Consumables/Coke");
+        Texture2D texure2D = Resources.Load<Texture2D>("Unrest/Assets/Resources/UI/Sprites/Items/Consumables/Coke.png");
         spriteToReturn = Sprite.Create(
             texure2D,
             new Rect(0, 0, texure2D.width, texure2D.height),
