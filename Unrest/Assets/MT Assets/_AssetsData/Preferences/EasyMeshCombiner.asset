@@ -69,7 +69,7 @@ MonoBehaviour:
     addMeshCollider: 0
   combineChildrens: 1
   combineInactives: 0
-  lightmapSupport: 0
+  lightmapSupport: 1
   saveMeshInAssets: 1
   savePrefabOfThis: 0
   prefabName: prefab
