@@ -19,7 +19,7 @@ public class Zombie : MonoBehaviour
 
     private float chaseSpeed = 2.0f;
     private float attackDistance = 2f;
-    private float stopNavMeshAgentDistance = 1.5f;
+    private float stopNavMeshAgentDistance = 1.8f;
     public float rotationSpeed = 10f;
    
     void Awake()
@@ -29,6 +29,7 @@ public class Zombie : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
 
         movingState = State.CHASE;
+        navMeshAgent.updateRotation = false;
     }
 
     void Update()
@@ -54,7 +55,7 @@ public class Zombie : MonoBehaviour
         navMeshAgent.SetDestination(player.position);
         navMeshAgent.speed = chaseSpeed;
 
-        //RotateTowardsPlayer();
+        rotateTowardsDirection();
 
         if (CheckAttackDistance())
         {
@@ -69,7 +70,7 @@ public class Zombie : MonoBehaviour
             navMeshAgent.velocity = Vector3.zero;
         }
 
-        //RotateTowardsPlayer();
+        RotateTowardsPlayer();
         animator.SetBool("Attack", true);
 
         if (!CheckAttackDistance())
@@ -91,11 +92,19 @@ public class Zombie : MonoBehaviour
         return dist <= stopNavMeshAgentDistance;
     }
 
-    //understand
     private void RotateTowardsPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+    }
+
+    private void rotateTowardsDirection()
+    {
+        Vector3 direction = (player.position - transform.position).normalized;
+        if (navMeshAgent.velocity.normalized != Vector3.zero) {
+            Quaternion lookRotation = Quaternion.LookRotation(navMeshAgent.velocity.normalized);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);   
+        }
     }
 }
